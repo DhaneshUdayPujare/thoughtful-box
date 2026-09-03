@@ -1,0 +1,138 @@
+{
+  "b9a408e901": {
+    "id": "b9a408e901",
+    "theme": "custom",
+    "title": "Sweetheart",
+    "from": "Your Dhanesh",
+    "message": "",
+    "items": [
+      {
+        "type": "note",
+        "text": "You are my favorite person in the universe!"
+      },
+      {
+        "type": "coupon",
+        "title": "One free coffee date",
+        "note": "Valid forever"
+      }
+    ],
+    "createdAt": "2026-09-03T17:37:31.093Z",
+    "views": 1,
+    "openedAt": null
+  },
+  "096b10fe9e": {
+    "id": "096b10fe9e",
+    "theme": "custom",
+    "title": "Sweetie",
+    "from": "Dhanesh",
+    "message": "",
+    "items": [
+      {
+        "type": "note",
+        "text": "Hope this brightens your day! You are awesome!"
+      },
+      {
+        "type": "song",
+        "url": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+        "title": ""
+      },
+      {
+        "type": "video",
+        "url": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+        "caption": ""
+      },
+      {
+        "type": "gift",
+        "url": "https://example.com/gift",
+        "note": "Surprise Gift"
+      },
+      {
+        "type": "drawing",
+        "fileUrl": "/uploads/57310c523170cab9-1788458794203.png",
+        "caption": ""
+      },
+      {
+        "type": "map",
+        "title": "Tokyo, Japan",
+        "url": "https://maps.google.com/?q=Tokyo,Japan",
+        "note": ""
+      },
+      {
+        "type": "coupon",
+        "title": "Free Hug",
+        "note": "Good for one warm hug anytime"
+      },
+      {
+        "type": "news",
+        "url": "https://example.com/news",
+        "title": "Local Bestie Wins Award for Being Awesome",
+        "note": ""
+      },
+      {
+        "type": "note",
+        "text": "You make my heart smile every single day!"
+      },
+      {
+        "type": "coupon",
+        "title": "Free cuddle & movie night",
+        "note": ""
+      },
+      {
+        "type": "song",
+        "url": "https://open.spotify.com/track/4cOdK2wGLETKBW3PvgPWqT",
+        "title": "Our favorite song"
+      }
+    ],
+    "createdAt": "2026-09-03T18:23:57.272Z",
+    "views": 2,
+    "openedAt": "2026-09-03T18:25:32.107Z"
+  },
+  "def38a7955": {
+    "id": "def38a7955",
+    "theme": "custom",
+    "title": "Sanu",
+    "from": "Dhanu",
+    "message": "",
+    "items": [
+      {
+        "type": "note",
+        "text": "I Love you so so so much 💖"
+      }
+    ],
+    "createdAt": "2026-09-03T18:36:15.051Z",
+    "views": 0,
+    "openedAt": null
+  },
+  "6e17b62f99": {
+    "id": "6e17b62f99",
+    "theme": "custom",
+    "title": "GC",
+    "from": "Dhanesh",
+    "message": "",
+    "items": [
+      {
+        "type": "note",
+        "text": "Hey"
+      }
+    ],
+    "createdAt": "2026-09-03T18:37:08.871Z",
+    "views": 0,
+    "openedAt": null
+  },
+  "d70ec9b675": {
+    "id": "d70ec9b675",
+    "theme": "custom",
+    "title": "Swara",
+    "from": "Dhanu",
+    "message": "",
+    "items": [
+      {
+        "type": "note",
+        "text": "hey cutie, 💖"
+      }
+    ],
+    "createdAt": "2026-09-03T18:38:16.188Z",
+    "views": 1,
+    "openedAt": "2026-09-03T18:38:40.932Z"
+  }
+}
