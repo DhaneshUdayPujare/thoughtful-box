@@ -14,14 +14,43 @@ const DATA_DIR = isVercel ? path.join('/tmp', 'data') : path.join(__dirname, 'da
 const PACKAGES_FILE = path.join(DATA_DIR, 'packages.json');
 const UPLOADS_DIR = isVercel ? path.join('/tmp', 'uploads') : path.join(__dirname, 'uploads');
 
+const BUNDLED_PACKAGES_FILE = path.join(__dirname, 'data', 'packages.json');
+const BUNDLED_UPLOADS_DIR = path.join(__dirname, 'uploads');
+
 if (!fs.existsSync(DATA_DIR)) fs.mkdirSync(DATA_DIR, { recursive: true });
 if (!fs.existsSync(UPLOADS_DIR)) fs.mkdirSync(UPLOADS_DIR, { recursive: true });
-if (!fs.existsSync(PACKAGES_FILE)) fs.writeFileSync(PACKAGES_FILE, JSON.stringify({}), 'utf-8');
+
+// Seed packages file on Vercel from bundled repo data if available
+if (!fs.existsSync(PACKAGES_FILE)) {
+  if (fs.existsSync(BUNDLED_PACKAGES_FILE)) {
+    try {
+      fs.copyFileSync(BUNDLED_PACKAGES_FILE, PACKAGES_FILE);
+    } catch (e) {
+      fs.writeFileSync(PACKAGES_FILE, JSON.stringify({}), 'utf-8');
+    }
+  } else {
+    fs.writeFileSync(PACKAGES_FILE, JSON.stringify({}), 'utf-8');
+  }
+}
 
 function loadPackages() {
   try {
-    const raw = fs.readFileSync(PACKAGES_FILE, 'utf-8');
-    return JSON.parse(raw);
+    if (fs.existsSync(PACKAGES_FILE)) {
+      const raw = fs.readFileSync(PACKAGES_FILE, 'utf-8');
+      const loaded = JSON.parse(raw);
+      // Merge with bundled packages so pre-existing repo packages never get lost
+      if (fs.existsSync(BUNDLED_PACKAGES_FILE)) {
+        try {
+          const bundled = JSON.parse(fs.readFileSync(BUNDLED_PACKAGES_FILE, 'utf-8'));
+          return Object.assign({}, bundled, loaded);
+        } catch (e) {}
+      }
+      return loaded;
+    }
+    if (fs.existsSync(BUNDLED_PACKAGES_FILE)) {
+      return JSON.parse(fs.readFileSync(BUNDLED_PACKAGES_FILE, 'utf-8'));
+    }
+    return {};
   } catch (err) {
     console.error('Error loading packages:', err);
     return {};
@@ -45,6 +74,9 @@ app.use(express.urlencoded({ extended: true, limit: '25mb' }));
 // Static assets & uploads
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/uploads', express.static(UPLOADS_DIR));
+if (isVercel && fs.existsSync(BUNDLED_UPLOADS_DIR)) {
+  app.use('/uploads', express.static(BUNDLED_UPLOADS_DIR));
+}
 
 // File Upload
 const storage = multer.diskStorage({
@@ -92,7 +124,6 @@ app.post('/api/packages', (req, res) => {
       openedAt: null
     };
 
-    // Reload store before writing to stay in sync with concurrent requests
     packagesStore = loadPackages();
     packagesStore[id] = pkg;
     savePackages(packagesStore);
@@ -135,7 +166,7 @@ app.get('/p/:id', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
-// Start Server locally or on persistent containers (Render, Railway, etc.)
+// Start Server locally or on persistent containers
 if (!process.env.VERCEL) {
   app.listen(PORT, () => {
     console.log(`✨ A Little Box of Goodies running at: http://localhost:${PORT}`);
