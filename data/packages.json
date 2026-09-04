@@ -84,7 +84,7 @@
       }
     ],
     "createdAt": "2026-09-03T18:23:57.272Z",
-    "views": 2,
+    "views": 6,
     "openedAt": "2026-09-03T18:25:32.107Z"
   },
   "def38a7955": {
@@ -134,5 +134,21 @@
     "createdAt": "2026-09-03T18:38:16.188Z",
     "views": 1,
     "openedAt": "2026-09-03T18:38:40.932Z"
+  },
+  "4f2bf5f446": {
+    "id": "4f2bf5f446",
+    "theme": "custom",
+    "title": "Swara",
+    "from": "Dhanesh",
+    "message": "",
+    "items": [
+      {
+        "type": "note",
+        "text": "Hey Cutie, 💖🫂😊"
+      }
+    ],
+    "createdAt": "2026-09-04T01:25:06.833Z",
+    "views": 1,
+    "openedAt": null
   }
 }
